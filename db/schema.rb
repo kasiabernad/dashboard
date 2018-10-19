@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2018_10_19_095724) do
   end
 
   create_table "loads", force: :cascade do |t|
-    t.integer "weight"
     t.string "start_location"
     t.string "end_location"
     t.datetime "start_date"
@@ -48,8 +47,8 @@ ActiveRecord::Schema.define(version: 2018_10_19_095724) do
   end
 
   create_table "packages", force: :cascade do |t|
-    t.integer "amount"
-    t.integer "type"
+    t.integer "weight"
+    t.integer "kind"
     t.bigint "load_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,16 +66,12 @@ ActiveRecord::Schema.define(version: 2018_10_19_095724) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
+    t.string "firstname"
     t.string "surname"
     t.string "tax_number"
     t.string "address"
-    t.bigint "load_id"
-    t.bigint "job_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["job_id"], name: "index_users_on_job_id"
-    t.index ["load_id"], name: "index_users_on_load_id"
   end
 
   create_table "vehicles", force: :cascade do |t|
