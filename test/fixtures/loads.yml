@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weight: 1
+  start_location: MyString
+  end_location: MyString
+  start_date: 2018-10-19 11:21:24
+  end_date: 2018-10-19 11:21:24
+
+two:
+  weight: 1
+  start_location: MyString
+  end_location: MyString
+  start_date: 2018-10-19 11:21:24
+  end_date: 2018-10-19 11:21:24

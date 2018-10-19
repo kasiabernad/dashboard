@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 1.5
+  buyer_tax_number: MyString
+  buyer_name: 
+  buyer_address: MyString
+
+two:
+  price: 1.5
+  buyer_tax_number: MyString
+  buyer_name: 
+  buyer_address: MyString
