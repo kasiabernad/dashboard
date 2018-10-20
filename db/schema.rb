@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_095724) do
+ActiveRecord::Schema.define(version: 2018_10_20_121607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,5 +82,22 @@ ActiveRecord::Schema.define(version: 2018_10_19_095724) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+
+  create_view "light_loads", materialized: true,  sql_definition: <<-SQL
+      WITH sum AS (
+           SELECT loads.id AS load,
+              loads.start_location AS location,
+              sum(packages.weight) AS total_weight
+             FROM (loads
+               JOIN packages ON ((loads.id = packages.load_id)))
+            GROUP BY loads.start_location, loads.id
+          )
+   SELECT sum.load,
+      sum.location,
+      sum.total_weight
+     FROM sum
+    WHERE (sum.total_weight < 10000);
+  SQL
 
 end

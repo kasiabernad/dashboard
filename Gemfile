@@ -44,6 +44,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rails-erd'
   gem 'faker'
+  gem 'pry'
 end
 
 group :development do

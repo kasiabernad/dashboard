@@ -1,6 +1,9 @@
 
 <%= pie_chart Package.group(:kind).count %>
-
+<% @loads.each do |load| %>
+  <%= load.load %>
+  <%= load.total_weight %>
+<% end %>
 Loady pogrupowane po miesiącach do kiedy trzeba dostarczyc
 Loady pogrupowane po miesiącach kiedy się zaczynają, z policzoną wagę packagy i dopasowaniem samochodu
 niedopasowane do samochodu
