@@ -1,0 +1,2 @@
+# HelloWorldJob:
+#   cron: '0 * * * * *'   # Runs once per minute
