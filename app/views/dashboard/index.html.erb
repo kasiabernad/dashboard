@@ -1,11 +1,31 @@
+Rodzaje towarów:
+  <%= pie_chart Package.group(:kind).count %> </br>
+Ładunki poniżej 10 ton, pogrupowane po miesiącu wyjazdu:
+  <%= column_chart @light_loads %>
+Procent ładunków, których ciężar ładunku dopasowuje się do pojemności któregoś z typu samochodów:
+(ładunki, które będą mogły zostać przewiezione przez któryś z samochodów, bo się zmieszczą)
+<%= pie_chart @match_percentage %>
+<table>
+  <thead>
+    <th> job </th>
+    <th> creator </th>
+    <th> load </th>
+    <th> driver </th>
+  </thead>
+  <tbody>
+    <% LoadCreatorDriver.all.take(20).each do |load| %>
+      <tr>
+        <td><%= load.job %></td>
+        <td><%= load.creator %></td>
+        <td><%= load.load %></td>
+        <td><%= load.driver %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= pie_chart Package.group(:kind).count %>
-<% @loads.each do |load| %>
-  <%= load.load %>
-  <%= load.total_weight %>
-<% end %>
 Loady pogrupowane po miesiącach do kiedy trzeba dostarczyc
 Loady pogrupowane po miesiącach kiedy się zaczynają, z policzoną wagę packagy i dopasowaniem samochodu
 niedopasowane do samochodu
 
-Loady z weight poniżej 10 ton
+Union na adresach - mapka świata

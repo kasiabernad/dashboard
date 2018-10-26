@@ -86,14 +86,16 @@ ActiveRecord::Schema.define(version: 2018_10_20_121607) do
 
   create_view "light_loads", materialized: true,  sql_definition: <<-SQL
       WITH sum AS (
-           SELECT loads.id AS load,
+           SELECT loads.id,
+              loads.start_date AS startdate,
               loads.start_location AS location,
               sum(packages.weight) AS total_weight
              FROM (loads
                JOIN packages ON ((loads.id = packages.load_id)))
-            GROUP BY loads.start_location, loads.id
+            GROUP BY loads.start_location, loads.id, loads.start_date
           )
-   SELECT sum.load,
+   SELECT sum.id,
+      sum.startdate,
       sum.location,
       sum.total_weight
      FROM sum
