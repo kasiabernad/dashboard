@@ -5,6 +5,25 @@
     procentowy rozkład ładunków mających pokrycie w samochodach i nie mających pokrycia
   </h1>
   <%= pie_chart @match_percentage %>
+
+  <h1> Kierowcy z samochodami z pojemmnością powyżej 10 ton </h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <th> name </th>
+        <th> Vehicles count </th>
+      </thead>
+      <tbody>
+        <% @drivers_with_big_cars.take(20).each do |driver| %>
+          <tr>
+            <td><%= "#{driver.firstname} #{driver.surname }" %></td>
+            <td><%= driver.big_vehicles.count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
   <h1> Job - Creator - load - driver </h1>
   <div class="table-responsive">
     <table class="table table-striped">
