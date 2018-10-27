@@ -1,31 +1,66 @@
-Rodzaje towarów:
-  <%= pie_chart Package.group(:kind).count %> </br>
-Ładunki poniżej 10 ton, pogrupowane po miesiącu wyjazdu:
-  <%= column_chart @light_loads %>
-Procent ładunków, których ciężar ładunku dopasowuje się do pojemności któregoś z typu samochodów:
-(ładunki, które będą mogły zostać przewiezione przez któryś z samochodów, bo się zmieszczą)
-<%= pie_chart @match_percentage %>
-<table>
-  <thead>
-    <th> job </th>
-    <th> creator </th>
-    <th> load </th>
-    <th> driver </th>
-  </thead>
-  <tbody>
-    <% LoadCreatorDriver.all.take(20).each do |load| %>
-      <tr>
-        <td><%= load.job %></td>
-        <td><%= load.creator %></td>
-        <td><%= load.load %></td>
-        <td><%= load.driver %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <h1>Ładunki poniżej 10 ton, pogrupowane po miesiącu wyjazdu - subquery </h1>
+    <%= column_chart @light_loads %>
+  <h1>
+    procentowy rozkład ładunków mających pokrycie w samochodach i nie mających pokrycia
+  </h1>
+  <%= pie_chart @match_percentage %>
+  <h1> Job - Creator - load - driver </h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <th> job </th>
+        <th> creator </th>
+        <th> load </th>
+        <th> driver </th>
+      </thead>
+      <tbody>
+        <% LoadCreatorDriver.all.order(:creator).take(20).each do |load| %>
+          <tr>
+            <td><%= load.job %></td>
+            <td><%= load.creator %></td>
+            <td><%= load.load %></td>
+            <td><%= load.driver %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <h1>Creator - driver - recursive table</h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <th> creator </th>
+        <th> driver </th>
+      </thead>
+      <tbody>
+        <% RecursiveUser.all.order(:creator).take(20).each do |users| %>
+          <tr>
+            <td><%= users.creator %></td>
+            <td><%= users.driver %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-Loady pogrupowane po miesiącach do kiedy trzeba dostarczyc
-Loady pogrupowane po miesiącach kiedy się zaczynają, z policzoną wagę packagy i dopasowaniem samochodu
-niedopasowane do samochodu
-
-Union na adresach - mapka świata
+  <h1>Tabela podatkowa - Union </h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <th> type </th>
+        <th> name </th>
+        <th> tax number </th>
+      </thead>
+      <tbody>
+        <% TaxNumber.all.take(20).each do |t| %>
+          <tr>
+            <td><%= t.kind %></td>
+            <td><%= t.name %></td>
+            <td><%= t.tax_number %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

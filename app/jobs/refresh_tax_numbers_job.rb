@@ -1,7 +1,7 @@
-class RefreshLightLoadsJob
+class RefreshTaxNumbersJob
   include Sidekiq::Worker
   
   def perform
-    LightLoad.refresh
+    TaxNumber.refresh
   end
 end

@@ -1,2 +1,10 @@
 RefreshLightLoadsJob:
   cron: '* 1 * * * *'   # Runs once per hour
+RefreshMatchedLoadsJob:
+  cron: '* 1 * * * *'   # Runs once per hour
+RefreshTaxNumbersJob:
+  cron: '* 1 * * * *'   # Runs once per hour
+RefreshLoadCreatorDriverJob:
+  cron: '* 1 * * * *'   # Runs once per hour
+RefreshRecursiveUsersJob:
+  cron: '* 1 * * * *'   # Runs once per hour

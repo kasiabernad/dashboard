@@ -52,7 +52,7 @@ namespace :prepare_data do
       Invoice.create!(
         buyer_address: Faker::Address.full_address,
         buyer_name: Faker::Name.name,
-        buyer_tax_number: Faker::IDNumber,
+        buyer_tax_number: Faker::IDNumber.valid,
         job: sample(Job)
       )
     end

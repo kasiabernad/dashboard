@@ -1,4 +1,6 @@
+require 'sidekiq'
 require 'sidekiq/scheduler'
+
 Sidekiq::Scheduler.dynamic = true
 Sidekiq.configure_server do |config|
   config.on(:startup) do

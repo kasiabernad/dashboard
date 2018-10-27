@@ -1,7 +1,7 @@
-class RefreshLightLoadsJob
+class RefreshMatchedLoadsJob
   include Sidekiq::Worker
   
   def perform
-    LightLoad.refresh
+    MatchedLoad.refresh
   end
 end
